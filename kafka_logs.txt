@@ -1,0 +1,29 @@
+Step 1: Ensure Kafka and Zookeeper are running
+Docker containers must be running for Kafka and Zookeeper:
+
+bash
+docker ps
+Confirm you see Kafka and Zookeeper containers running.
+
+Step 2: Ensure Kafka topic exists
+Confirm topic upi-transaction-events is created:
+
+bash
+docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
+You should see upi-transaction-events listed.
+
+If not created, create with:
+
+bash
+docker exec -it kafka kafka-topics --create --topic upi-transaction-events --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+Step 3: Start your UPI Microservices
+Start all your Python FastAPI microservices (app.py, bene_bank.py, payer_psp.py, payee_psp.py) on their respective ports as per your setup.
+
+Step 4: Perform a valid payment transaction
+Use Postman or any API client to POST a valid Payment XML request to your switch service endpoint, e.g.:
+
+text
+POST http://localhost:8000/reqPay
+Ensure your XML input contains valid VPAs, amounts, and PIN matching your mock data.
+
+step 5-->python kafka_consumer.py
