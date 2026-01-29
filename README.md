@@ -21,7 +21,7 @@ Dataset
 
 Source: Bank marketing dataset
 
-File: data/bank.csv
+File: bank.csv
 
 Target variable:
 
