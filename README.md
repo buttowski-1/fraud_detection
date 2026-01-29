@@ -1,50 +1,85 @@
+Bank Term Deposit Subscription Prediction using XGBoost
+Project Overview
 
-Fraudulent transactions pose a significant threat to online payment systems. This project implements a machine learning-powered fraud detection system that can identify and prevent fraudulent transactions in real-time using AI.
+This project aims to predict whether a bank customer will subscribe to a term deposit based on historical marketing and customer data.
+The dataset is highly imbalanced, with far fewer customers subscribing compared to those who do not.
 
+The solution uses XGBoost with imbalance handling techniques and focuses on business-relevant evaluation metrics rather than just accuracy.
 
-Key Features
-Real-Time Fraud Detection – Classifies transactions as fraudulent or legitimate  
-AI-Powered Risk Analysis – Uses Random Forest, XGBoost, and other ML models  
-Interactive Dashboard – Provides fraud insights with live transaction monitoring 
-Anomaly Detection – Detects unusual transaction behaviors 
-Automated Alerts– Flags high-risk transactions instantly 
+Problem Statement
 
-Tech Stack
-Programming Python (FastAPI, Streamlit)
-Machine Learning: Scikit-learn, XGBoost, Random Forest
-Data Processing: Pandas, NumPy, Matplotlib, Seaborn
-Database: SQLite / MongoDB for transaction storage
-APIs: REST API for seamless integration with payment platforms
+Banks run large-scale marketing campaigns, but contacting uninterested customers leads to:
 
-Dashboard Features
-Fraud Heatmap – Highlights high-risk zones  
-Live Logs – Tracks flagged transactions in real time  
-Visual Insights – Pie charts, bar graphs for fraud trends  
+High operational costs
+
+Low conversion rates
+
+The goal is to identify potential subscribers in advance, so marketing efforts can be targeted efficiently.
+
 
 Dataset
-The dataset is collected from Kaggle, containing historical fraud transaction records. 
 
-step: Represents time (1 step = 1 hour)
-  type: Type of online transaction  
-  amount: Transaction amount  
-  nameOrig: Customer initiating the transaction  
-  oldbalanceOrg: Balance before transaction  
-  newbalanceOrig: Balance after transaction  
-  nameDest: Recipient of the transaction  
-  oldbalanceDest: Initial balance of recipient before the transaction  
-  newbalanceDest: New balance of recipient after the transaction  
-  isFraud: Indicates whether the transaction was fraudulen
+Source: Bank marketing dataset
+
+File: data/bank.csv
+
+Target variable:
+
+y = 1 → Customer subscribed
+
+y = 0 → Customer did not subscribe
+
+Challenge: Severe class imbalance (~11% positive class)
+
+Project Architecture
+
+The overall workflow is shown below:
+
+Data loading and inspection
+
+Data preprocessing and encoding
+
+Train–test split with stratification
+
+Handling imbalance using SMOTE
+
+Model training using XGBoost
+
+Evaluation using multiple metrics  
+
+Approach
+
+Converted categorical variables using one-hot encoding
+
+Preserved class distribution using stratified train–test split
+
+Applied SMOTE to balance the training data
+
+Trained an XGBoost classifier
+
+Evaluated performance using:
+
+Precision
+
+Recall
+
+F1-score
+
+ROC-AUC
+
+Focused on minority class (subscribers) performance
 
 
-Achievements
-Achieved 90%+ accuracy** in fraud detection  
-Optimized ML models** using feature selection & hyperparameter tuning  
-Designed a scalable architecture** for real-world deployment  
+Model Performance
 
- Future Enhancements
-Implement LSTM models for better fraud pattern recognition  
-Deploy model as API for fintech integration  
-Use blockchain for enhanced transaction security  
+Key results on test data:
 
+Accuracy: ~88%
 
+ROC-AUC: ~0.89
 
+Recall (Subscribers): ~0.43
+
+F1-score (Subscribers): ~0.46
+
+The high ROC-AUC indicates good class separation, while moderate recall highlights the trade-off in imbalanced classification problems.
