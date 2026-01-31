@@ -1,12 +1,12 @@
-Bank Term Deposit Subscription Prediction using XGBoost
-Project Overview
+***Bank Term Deposit Subscription Prediction using XGBoost***
+***Project Overview***
 
 This project aims to predict whether a bank customer will subscribe to a term deposit based on historical marketing and customer data.
 The dataset is highly imbalanced, with far fewer customers subscribing compared to those who do not.
 
 The solution uses XGBoost with imbalance handling techniques and focuses on business-relevant evaluation metrics rather than just accuracy.
 
-Problem Statement
+***Problem Statement***
 
 Banks run large-scale marketing campaigns, but contacting uninterested customers leads to:
 
@@ -17,7 +17,7 @@ Low conversion rates
 The goal is to identify potential subscribers in advance, so marketing efforts can be targeted efficiently.
 
 
-Dataset
+***Dataset***
 
 Source: Bank marketing dataset
 
